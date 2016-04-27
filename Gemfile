@@ -19,7 +19,7 @@ source 'https://rubygems.org'
  
  group :test do
    gem 'rspec-rails', '~> 3.0'
-   gem 'shoulda-matchers', '~> 3.1'
+   gem 'shoulda-matchers', '~> 3.1' #Shoulda matchers for easy documenting tests
  end
  
  # Use SCSS for stylesheets
