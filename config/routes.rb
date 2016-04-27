@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   get 'about', to: 'welcome#about'
   
-  get 'welcome/contact'
+  get 'contact', to: 'welcome#contact'
 end
