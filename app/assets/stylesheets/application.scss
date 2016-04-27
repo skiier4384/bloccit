@@ -16,3 +16,25 @@
  
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ 
+ .social-btn {
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+  position: relative;
+  background-color:rgb(41,127,184);
+  color:rgb(255,255,255);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  background: #FF7F00;
+  
+  
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  text-shadow:0px 1px 0px rgba(0,0,0,0.5);
+}
