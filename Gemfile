@@ -15,7 +15,11 @@ source 'https://rubygems.org'
  end
  
  group :development, :test do
+ end
+ 
+ group :test do
    gem 'rspec-rails', '~> 3.0'
+   gem 'shoulda-matchers', '~> 3.1' #Shoulda matchers for easy documenting tests
  end
  
  # Use SCSS for stylesheets
