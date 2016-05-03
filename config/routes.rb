@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
   
+  #get 'sponsored_posts/show'
+
+  #get 'sponsored_posts/new'
+
+  #get 'sponsored_posts/edit'
+  
    resources :topics do
- # #34
-   resources :posts, except: [:index]
-   
+     resources :sponsoredposts, except: [:index]
    end
 
-  get 'about', to: 'welcome#about'
+   resources :topics do
+     resources :posts, except: [:index]
+   end
+
+   get 'about', to: 'welcome#about'
   
-  root 'welcome#index'
+   root 'welcome#index'
 end
