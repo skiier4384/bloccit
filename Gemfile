@@ -21,6 +21,8 @@ source 'https://rubygems.org'
  group :test do
    gem 'rspec-rails', '~> 3.0'
    gem 'shoulda-matchers', '~> 3.1' #Shoulda matchers for easy documenting tests
+   gem 'shoulda'
+   gem 'mongoid-rspec'
  end
  
  # Use SCSS for stylesheets
@@ -35,3 +37,6 @@ source 'https://rubygems.org'
  gem 'turbolinks'
  
  gem 'bootstrap-sass'
+ 
+ # Used for encrypting User passwords
+ gem 'bcrypt'
