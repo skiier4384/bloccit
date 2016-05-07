@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+   
+   has_many :posts
 
    def before_save 
       self.email = self.email.downcase
