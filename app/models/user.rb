@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
       self.email = self.email.downcase
    end
    
+   before_save { self.role ||= :member }
+   
    before_save :format_name
 
    validates :name, length: { minimum: 1, maximum: 100 }, presence: true
@@ -14,6 +16,8 @@ class User < ActiveRecord::Base
    validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 254 }
 
    has_secure_password
+   
+   enum role: [:member, :admin]
    
    def format_name
       if name
