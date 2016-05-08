@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   
   before_action :require_sign_in, except: :show
   before_action :authorize_user, except: [:show, :new, :create]
-
+ #before_action :authorize_user2, except: [:index, :show, :destory, :edit]
+ 
   def show
     @post = Post.find(params[:id])
   end
@@ -70,4 +71,11 @@ class PostsController < ApplicationController
        redirect_to [post.topic, post]
      end
    end
+   
+  #def authorize_user2
+    #unless current_user.moderator?
+      #flash[:alert] = "You must be a moderator to do that."
+      #redirect_to topics_path
+    #end
+  #end
 end
