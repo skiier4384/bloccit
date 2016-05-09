@@ -1,19 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-   context "attributes" do
-       let(:question) {Question.new(title: "New Question Title", body: "New Question Body", resolved: false)}
-       
-        it "should respond to title" do
-            expect(question).to respond_to(:title)
-        end
-        
-        it "should respond to body" do
-            expect(question).to respond_to(:body)
-        end
-        
-        it "should respond to resolved" do
-            expect(question).to respond_to(:resolved)
-        end
-    end
+
+  describe "attributes" do #Documentation for shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
+    it {should have_db_column(:title).of_type(:string)}
+    it {should have_db_column(:body).of_type(:text)}
+    it {should have_db_column(:resolved).of_type(:boolean).with_options({default: false, null: false})}
+  end
+    
 end
