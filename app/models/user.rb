@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
    
    has_many :posts
+   has_many :comments
 
    def before_save 
       self.email = self.email.downcase

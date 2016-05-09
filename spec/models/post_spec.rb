@@ -11,6 +11,7 @@ RSpec.describe Post, type: :model do
    let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
    let(:post) { topic.posts.create!(title: title, body: body, user: user) }
    
+   it { is_expected.to have_many(:comments) }
    it { is_expected.to belong_to(:topic) }
    it { is_expected.to belong_to(:user) }
    
@@ -24,7 +25,7 @@ RSpec.describe Post, type: :model do
  
   describe "attributes" do #Documentation for shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
    it "has a title, body, and user attribute" do
-      expect(post).to have_attributes(title: title, body: body, user: user)
+     expect(post).to have_attributes(title: title, body: body, user: user)
     #it {should have_db_column(:title).of_type(:string)}
     #it {should have_db_column(:body).of_type(:text)}
     #expect(post).to have_attributes(title: title, body: body)

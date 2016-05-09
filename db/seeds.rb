@@ -34,6 +34,7 @@ require 'random_data'
  # Create Comments
  100.times do |i|
    Comment.create!(
+     user: users.sample,
      post: posts.sample,
      body: "#{i}_" + RandomData.random_paragraph
    )
