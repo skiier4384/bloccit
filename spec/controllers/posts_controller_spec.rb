@@ -1,8 +1,6 @@
  require 'rails_helper'
 
  RSpec.describe PostsController, type: :controller do
-     
-  #let(:my_post) { Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
   
    let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
    let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
@@ -67,7 +65,6 @@
       post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
       expect(response).to redirect_to [my_topic, Post.last]
     end
-  end
 
     it "redirects to the new post" do
       post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
