@@ -81,6 +81,19 @@
     end
   end
 
+    it "redirects to the new post" do
+      post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+      expect(response).to redirect_to Post.last
+    end
+  end
+
+  describe "GET edit" do
+    it "returns http success" do
+      get :edit, {id: my_post.id}
+      expect(response).to have_http_status(:success)
+    end
+  end
+
     describe "GET edit" do
       it "returns http success" do
        # #25
