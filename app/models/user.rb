@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 254 }
 
   before_save { email = email.downcase if email.present? }
-  before_save :format_name
   
   has_secure_password
    
