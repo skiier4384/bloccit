@@ -4,8 +4,7 @@ class CreateSponsoredPosts < ActiveRecord::Migration
       t.string :title
       t.text :body
       t.integer :price
-
-      t.timestamps null: false
+      t.references :topic, index: true, foreign_key: true
     end
   end
 end
