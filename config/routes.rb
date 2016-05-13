@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+   root 'welcome#index'
+   get 'about', to: 'welcome#about'
   
    resources :labels, only: [:show]
 
@@ -12,8 +14,4 @@ Rails.application.routes.draw do
    resources :posts, only: [] do
    resources :comments, only: [:create, :destroy]
    end
-
-   get 'about', to: 'welcome#about'
-   
-   root 'welcome#index'
 end
