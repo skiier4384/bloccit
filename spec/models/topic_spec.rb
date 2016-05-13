@@ -9,8 +9,8 @@ RSpec.describe Topic, type: :model do
   end
   
   describe 'associations' do
+    it {should have_many(:sponsored_posts).dependent(:destroy)}
     it {should have_many(:posts).dependent(:destroy)}
-    it {should have_many(:posts).dependent(:sponsored_posts)}
   end
 
 end
