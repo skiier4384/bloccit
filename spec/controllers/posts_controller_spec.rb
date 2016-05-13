@@ -145,7 +145,6 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-
   context "member user doing CRUD on a post they own" do
     before do
       create_session(my_user)
