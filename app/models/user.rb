@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  enum role: [:member, :admin]
   
   has_many :posts
   
