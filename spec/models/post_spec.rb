@@ -16,6 +16,7 @@ RSpec.describe Post, type: :model do
    
    it { is_expected.to have_many(:comments) }
    it { is_expected.to have_many(:votes) }
+   it { is_expected.to have_many(:favorites) }
    it { is_expected.to belong_to(:topic) }
    it { is_expected.to belong_to(:user) }
    
@@ -23,24 +24,6 @@ RSpec.describe Post, type: :model do
    it { is_expected.to validate_presence_of(:body) }
    it { is_expected.to validate_presence_of(:topic) }
    it { is_expected.to validate_presence_of(:user) }
-<<<<<<< HEAD
-=======
-
-   it { is_expected.to validate_length_of(:title).is_at_least(5) }
-   it { is_expected.to validate_length_of(:body).is_at_least(20) }
- 
-  describe "attributes" do #Documentation for shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
-   it "has a title, body, and user attribute" do
-     expect(post).to have_attributes(title: title, body: body, user: user)
-    #it {should have_db_column(:title).of_type(:string)}
-    #it {should have_db_column(:body).of_type(:text)}
-    #expect(post).to have_attributes(title: title, body: body)
-   end
-  end
-  
-  describe 'associations' do
-    it {should have_many(:comments)}
-  end
   
   describe "voting" do
      before do
@@ -87,5 +70,4 @@ RSpec.describe Post, type: :model do
        end
      end
    end
->>>>>>> 43_checkpoint
 end

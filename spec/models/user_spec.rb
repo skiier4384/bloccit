@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-<<<<<<< HEAD
   
   describe "attributes" do #Documentation for shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
     it {should have_db_column(:email).of_type(:string)}
@@ -12,6 +11,8 @@ RSpec.describe User, type: :model do
   describe 'associations' do
     it { is_expected.to have_many(:posts) }
     it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:votes) }
+    it { is_expected.to have_many(:favorites) }
   end
   
   describe 'validations' do
@@ -28,52 +29,20 @@ RSpec.describe User, type: :model do
     it { should have_secure_password }
     it { should validate_length_of(:password).is_at_least(6) }
   end
-
-=======
-   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
-   
-   it { is_expected.to have_many(:posts) }
-   it { is_expected.to have_many(:comments) }
-   it { is_expected.to have_many(:votes) }
-   
-   # Shoulda tests for name
-   it { is_expected.to validate_presence_of(:name) }
-   it { is_expected.to validate_length_of(:name).is_at_least(1) }
- 
-   # Shoulda tests for email
-   it { is_expected.to validate_presence_of(:email) }
-   it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
-   it { is_expected.to validate_length_of(:email).is_at_least(3) }
-   it { is_expected.to allow_value("user@bloccit.com").for(:email) }
- 
-   # Shoulda tests for password
-   it { is_expected.to validate_presence_of(:password) }
-   it { is_expected.to have_secure_password }
-   it { is_expected.to validate_length_of(:password).is_at_least(6) }
- 
-   describe "attributes" do
-     it "should have name and email attributes" do
-        expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
-     end
-     
-     it "should format at the user's name" do
-        user.name = "bloc user"
-        user.save
-        expect(user.name).to eq "Bloc User"
-     end
-     
-     it "responds to role" do
-       expect(user).to respond_to(:role)
+  
+  describe "#favorite_for(post)" do
+     before do
+       topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+       @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
      end
  
-     it "responds to admin?" do
-       expect(user).to respond_to(:admin?)
+     it "returns `nil` if the user has not favorited the post" do
+       expect(user.favorite_for(@post)).to be_nil
      end
  
-     it "responds to member?" do
-       expect(user).to respond_to(:member?)
+     it "returns the appropriate favorite if it exists" do
+       favorite = user.favorites.where(post: @post).create
+       expect(user.favorite_for(@post)).to eq(favorite)
      end
    end
->>>>>>> 43_checkpoint
-
 end
