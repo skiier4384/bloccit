@@ -47,7 +47,7 @@ RSpec.describe Post, type: :model do
     
     describe "#up_votes" do
       it "counts the number of votes with value = 1" do
-        expect( post.up_votes ).the eq(@up_votes)
+        expect( post.up_votes ).to eq(@up_votes)
       end
     end
     
