@@ -11,16 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513143043) do
+ActiveRecord::Schema.define(version: 20160514212946) do
 
-  create_table "advertisements", force: :cascade do |t|
-    t.string   "title"
-    t.text     "copy"
-    t.integer  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-  
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "post_id"
@@ -74,9 +66,9 @@ ActiveRecord::Schema.define(version: 20160513143043) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "role"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "role",            default: 0, null: false
   end
 
   create_table "votes", force: :cascade do |t|
