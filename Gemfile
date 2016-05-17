@@ -21,6 +21,7 @@ source 'https://rubygems.org'
    gem 'shoulda-matchers', '~> 3.1' #Shoulda matchers for easy documenting tests
    gem 'shoulda'
    gem 'mongoid-rspec'
+   gem 'factory_girl_rails', '~> 4.0'
  end
  
  # Use SCSS for stylesheets
