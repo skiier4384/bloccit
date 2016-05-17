@@ -113,4 +113,27 @@ RSpec.describe CommentsController, type: :controller do
        end
      end
    end
+   
+   describe "not signed in" do
+     let(:factory_comment) { create(:comment) }
+ 
+     before do
+       post :create, comment: new_comment_attributes
+     end
+ 
+     it "returns http success" do
+       get :show, {id: factory_comment.id}
+       expect(response).to have_http_status(:success)
+     end
+ 
+     it "renders the #show view" do
+       get :show, {id: factory_comment.id}
+       expect(response).to render_template :show
+     end
+ 
+     it "assigns factory_user to @comment" do
+       get :show, {id: factory_comment.id}
+       expect(assigns(:comment)).to eq(factory_comment)
+     end
+   end
 end

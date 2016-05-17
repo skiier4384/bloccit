@@ -10,6 +10,11 @@ class VotesController < ApplicationController
      update_vote(-1)
      redirect_to :back
    end
+   
+   def show
+     @vote = Vote.find(params[:id])
+     @posts = @vote.posts.visible_to(current_user)
+   end
  
    private  
    

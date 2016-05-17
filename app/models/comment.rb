@@ -6,6 +6,11 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
   
   after_create :send_favorite_emails
+  
+  def avatar_url(size)
+     gravatar_id = Digest::MD5::hexdigest(self.email).downcase
+     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+  end
  
   private
  

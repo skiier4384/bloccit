@@ -5,6 +5,11 @@ class Vote < ActiveRecord::Base
   
   validates :value, inclusion: { in: [-1, 1], message: "%{value} is not a valid vote." }, presence: true
   
+  def avatar_url(size)
+     gravatar_id = Digest::MD5::hexdigest(self.email).downcase
+     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+  end
+  
   private
  
    def update_post
