@@ -1,11 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
-    #let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
-    #let(:user) { create(:user) }
-    #let(:user_with_invalid_name) { build(:user, name: "") }
-    #let(:user_with_invalid_email) { build(:user, email: "") }
 
   describe "attributes" do #Documentation for shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
     it {should have_db_column(:email).of_type(:string)}
