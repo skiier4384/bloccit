@@ -47,7 +47,7 @@ RSpec.describe TopicsController, type: :controller do
       end
     end
 
-     describe "GET new" do
+    describe "GET new" do
       it "returns http redirect" do
         get :new
         expect(response).to redirect_to(new_session_path)
@@ -83,7 +83,7 @@ RSpec.describe TopicsController, type: :controller do
         delete :destroy, {id: my_topic.id}
         expect(response).to redirect_to(new_session_path)
       end
-     end
+    end
 
   context "member user" do
     before do
