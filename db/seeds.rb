@@ -23,20 +23,6 @@ else
   puts "Skipped creation of \"admin@example.com\""
 end
 
-# Create Admin User
-unless User.find_by(email: 'admin@example.com')
-  admin = User.create!(
-    name: 'admin example',
-    email: 'admin@example.com',
-    password: 'helloworld',
-    role: 'admin'
-  )
-  puts "created static Admin User."
-  puts "Email: #{admin.email} Password: #{admin.password}"
-else
-  puts "Skipped creation of \"admin@example.com\""
-end
-
 unless User.find_by(email: "member@example.com")
   member = User.create!(
     name: "Member Example",
