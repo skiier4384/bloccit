@@ -20,7 +20,16 @@
  </div>
  
  <h2>Posts</h2>
- <%= render @user.posts %>
+ <% if @user.posts.empty? %>
+   <h2>"{@user.name} has not submitted any posts yet."</h2>
+ <% else %>
+   <%= render @user.posts %>
+ <% end %>
  
  <h2>Comments</h2>
- <%= render @user.comments %>
+ <% if @user.comments.empty? %>
+   <h2>"{@user.name} has not submitted any posts yet."</h2>
+ <% else %>
+   <%= render @user.comments %>
+ <% end %>
+ 
