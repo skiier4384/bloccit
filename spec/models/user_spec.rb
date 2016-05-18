@@ -1,18 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
+
   describe "attributes" do #Documentation for shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
     it {should have_db_column(:email).of_type(:string)}
     it {should have_db_column(:name).of_type(:string)}
     it {should have_db_column(:password_digest).of_type(:string)}
+    it {should have_db_column(:role).of_type(:integer).with_options({default: 0, null: false})}
+    it {should define_enum_for(:role).with([:member, :admin])}
   end
   
   describe 'associations' do
-    it { is_expected.to have_many(:posts) }
-    it { is_expected.to have_many(:comments) }
-    it { is_expected.to have_many(:votes) }
-    it { is_expected.to have_many(:favorites) }
+    it {should have_many(:posts)}
+    it {should have_many(:comments)}
+    it {should have_many(:votes)}
+    it {should have_many(:favorites)}
   end
   
   describe 'validations' do
