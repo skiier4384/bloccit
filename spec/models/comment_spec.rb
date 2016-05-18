@@ -24,12 +24,16 @@ RSpec.describe Comment, type: :model do
   
   describe "after_create" do
      before do
-       @another_comment = Comment.new(body: 'Comment Body', post: post, user: user)
+       topic = Topic.create!(name: "Things", description: "All sorts of things.")
+       @user = User.create!(name: "Example", email: "example@example.com", password: "Example")
+       @post = Post.create!(title: "Long and texty", body: "Lots to talke about today so exciting.", topic: topic, user: @user)
+       @new_comment = Comment.new(body: 'Comment Body', post: @post, user: @user)
+       @another_comment = Comment.new(body: 'Comment Body', post: @post, user: @user)
      end
  
      it "sends an email to users who have favorited the post" do
-       favorite = user.favorites.create(post: post)
-       expect(FavoriteMailer).to receive(:new_comment).with(user, post, @another_comment).and_return(double(deliver_now: true))
+       @user.favorites.create(post: @post)
+       expect(FavoriteMailer).to receive(:new_comment).with(@user, @post, @another_comment).and_return(double(deliver_now: true))
        @another_comment.save!
      end
  
