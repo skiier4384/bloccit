@@ -12,7 +12,7 @@ RSpec.describe TopicsController, type: :controller do
       it "returns http success" do
         get :index
         expect(response).to have_http_status(:success)
-      end
+      end 
 
       it "assigns Topic.all to topic" do
         get :index
@@ -23,7 +23,7 @@ RSpec.describe TopicsController, type: :controller do
         get :index
         expect(assigns(:topics)).not_to include(my_private_topic)
       end
-    end
+    end # describe "GET index" do
 
     describe "GET show" do
       it "redirects from private topics" do
@@ -45,28 +45,28 @@ RSpec.describe TopicsController, type: :controller do
         get :show, {id: my_topic.id}
         expect(assigns(:topic)).to eq(my_topic)
       end
-    end
+    end # describe "GET show" do
 
     describe "GET new" do
       it "returns http redirect" do
         get :new
         expect(response).to redirect_to(new_session_path)
       end
-    end
+    end # describe "GET new" do
 
     describe "POST create" do
       it "returns http redirect" do
         post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
         expect(response).to redirect_to(new_session_path)
       end
-    end
+    end # describe "POST create" do
 
     describe "GET edit" do
       it "returns http redirect" do
         get :edit, {id: my_topic.id}
         expect(response).to redirect_to(new_session_path)
       end
-    end
+    end # describe "GET edit" do
 
     describe "PUT update" do
       it "returns http redirect" do
@@ -76,14 +76,15 @@ RSpec.describe TopicsController, type: :controller do
         put :update, id: my_topic.id, topic: {name: new_name, description: new_description }
         expect(response).to redirect_to(new_session_path)
       end
-    end
+    end # describe "PUT update" do
 
     describe "DELETE destroy" do
       it "returns http redirect" do
         delete :destroy, {id: my_topic.id}
         expect(response).to redirect_to(new_session_path)
       end
-    end
+    end # describe "DELETE destroy" do
+  end # context "guest" do
 
   context "member user" do
     before do
