@@ -1,11 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
-    #let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
-    #let(:user) { create(:user) }
-    #let(:user_with_invalid_name) { build(:user, name: "") }
-    #let(:user_with_invalid_email) { build(:user, email: "") }
 
   describe "attributes" do #Documentation for shoulda matchers http://matchers.shoulda.io/docs/v3.1.1/
     it {should have_db_column(:email).of_type(:string)}
@@ -40,17 +35,18 @@ RSpec.describe User, type: :model do
   
   describe "#favorite_for(post)" do
      before do
+       @user = create :user
        topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
-       @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+       @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: @user)
      end
  
      it "returns `nil` if the user has not favorited the post" do
-       expect(user.favorite_for(@post)).to be_nil
+       expect(@user.favorite_for(@post)).to be_nil
      end
  
      it "returns the appropriate favorite if it exists" do
-       favorite = user.favorites.where(post: @post).create
-       expect(user.favorite_for(@post)).to eq(favorite)
+       favorite = @user.favorites.where(post: @post).create
+       expect(@user.favorite_for(@post)).to eq(favorite)
      end
    end
    
