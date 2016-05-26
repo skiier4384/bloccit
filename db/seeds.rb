@@ -1,11 +1,11 @@
 require 'random_data'
 
- # Create Users
- 5.times do
-   User.create!(
-   name:     RandomData.random_name,
-   email:    RandomData.random_email,
-   password: RandomData.random_sentence
+# Create Users
+5.times do |i|
+  User.create!(
+    name:     "#{i}_" + RandomData.random_name,
+    email:    RandomData.random_email,
+    password: RandomData.random_sentence
    )
  end
 
@@ -16,20 +16,6 @@ unless User.find_by(email: "admin@example.com")
     email: "admin@example.com",
     password: "helloworld",
     role: "admin"
-  )
-  puts "created static Admin User."
-  puts "Email: #{admin.email} Password: #{admin.password}"
-else
-  puts "Skipped creation of \"admin@example.com\""
-end
-
-# Create Admin User
-unless User.find_by(email: 'admin@example.com')
-  admin = User.create!(
-    name: 'admin example',
-    email: 'admin@example.com',
-    password: 'helloworld',
-    role: 'admin'
   )
   puts "created static Admin User."
   puts "Email: #{admin.email} Password: #{admin.password}"
@@ -78,7 +64,7 @@ puts "#{Topic.count} topics created"
 
 # Create Posts
 50.times do |i|
-  Post.create!(
+  post = Post.create!(
     user:   users.sample,
     topic:  topics.sample,
     title: "#{i}_" + RandomData.random_sentence,
@@ -90,6 +76,7 @@ puts "#{Topic.count} topics created"
 end
 posts = Post.all
 puts "#{Post.count} posts created"
+puts "#{Vote.count} votes created"
 
 # Create Comments
 100.times do |i|
@@ -102,4 +89,3 @@ end
 puts "#{Comment.count} comments created"
 
 puts "Seed finished"
-
