@@ -9,20 +9,6 @@ require 'random_data'
    )
  end
 
-# Create an admin user
-unless User.find_by(email: "admin@example.com")
-  admin = User.create!(
-    name: "Admin Example",
-    email: "admin@example.com",
-    password: "helloworld",
-    role: "admin"
-  )
-  puts "created static Admin User."
-  puts "Email: #{admin.email} Password: #{admin.password}"
-else
-  puts "Skipped creation of \"admin@example.com\""
-end
-
 # Create Admin User
 unless User.find_by(email: 'admin@example.com')
   admin = User.create!(
@@ -37,6 +23,21 @@ else
   puts "Skipped creation of \"admin@example.com\""
 end
 
+# Create Moderator User
+unless User.find_by(email: 'moderator@example.com')
+  admin = User.create!(
+    name: 'moderator example',
+    email: 'moderator@example.com',
+    password: 'helloworld',
+    role: 'moderator'
+  )
+  puts "created static Moderator User."
+  puts "Email: #{moderator.email} Password: #{moderator.password}"
+else
+  puts "Skipped creation of \"moderator@example.com\""
+end
+
+# Create a Member
 unless User.find_by(email: "member@example.com")
   member = User.create!(
     name: "Member Example",

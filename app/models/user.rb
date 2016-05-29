@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
    
-  enum role: [:member, :admin]
+  enum role: [:member, :admin, :moderator]
   
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
