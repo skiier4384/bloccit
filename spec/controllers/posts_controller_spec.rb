@@ -9,9 +9,67 @@ RSpec.describe PostsController, type: :controller do
   let(:other_user) { create(:user) }
   let(:my_post) { create(:post, topic: my_topic, user: my_user) }
 
-  describe "GET show" do
-    before :example do
-      get :show, topic_id: my_topic.id, id: my_post.id
+      it "assigns my_post to @post" do
+        expect(assigns(:post)).to eq(my_post)
+      end
+    end # describe "GET show" do
+  
+    describe "GET new" do
+      before :example do
+        get :new, topic_id: my_topic.id
+      end
+
+      it "redirects to new_session_path" do
+        expect(response).to redirect_to new_session_path
+      end
+    end # describe "GET new" do
+  
+    describe "POST create" do
+      before :example do
+        post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+      end
+      
+      it "redirects to new_session_path" do
+        expect(response).to redirect_to new_session_path
+      end
+    end # describe "POST create" do
+  
+  
+    describe "GET edit" do
+      before :example do
+        get :edit, topic_id: my_topic.id, id: my_post.id
+      end
+
+      it "redirects to new_session_path" do
+        expect(response).to redirect_to new_session_path
+      end
+
+    end # describe "GET edit" do
+  
+    describe "PUT update" do
+      before :example do
+        put :update, topic_id: my_topic.id, id: my_post.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+      end
+      
+      it "redirects to new_session_path" do
+        expect(response).to redirect_to new_session_path
+      end
+    end # describe "PUT update" do
+     
+    describe "DELETE destroy" do
+      before :example do
+        delete :destroy, topic_id: my_topic.id, id: my_post.id
+      end
+      
+      it "redirects to new_session_path" do
+        expect(response).to redirect_to new_session_path
+      end
+    end # describe "DELETE destroy" do
+  end # context "no user signed in" do
+  
+  context "member user doing CRUD on a post they own" do
+    before do
+      create_session(my_user)
     end
 
     it "returns http success" do
@@ -331,15 +389,9 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe "DELETE destroy" do
-      it "deletes the post" do
+      it "redirects to post" do
         delete :destroy, topic_id: my_topic.id, id: my_post.id
-        count = Post.where({id: my_post.id}).size
-        expect(count).to eq 0
-      end
-
-      it "redirects to posts index" do
-        delete :destroy, topic_id: my_topic.id, id: my_post.id
-        expect(response).to redirect_to my_topic
+        expect(response).to redirect_to [my_topic, my_post]
       end
     end
   end
