@@ -62,7 +62,7 @@ RSpec.describe PostsController, type: :controller do
   
     describe "PUT update" do
       before :example do
-        put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
+        put :update, topic_id: my_topic.id, id: my_post.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
       end
       
       it "redirects to new_session_path" do
@@ -406,15 +406,9 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe "DELETE destroy" do
-      it "deletes the post" do
+      it "redirects to post" do
         delete :destroy, topic_id: my_topic.id, id: my_post.id
-        count = Post.where({id: my_post.id}).size
-        expect(count).to eq 0
-      end
-
-      it "redirects to posts index" do
-        delete :destroy, topic_id: my_topic.id, id: my_post.id
-        expect(response).to redirect_to my_topic
+        expect(response).to redirect_to [my_topic, my_post]
       end
     end
   end
