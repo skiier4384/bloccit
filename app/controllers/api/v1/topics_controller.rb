@@ -15,14 +15,14 @@
    
    def update
     topic = Topic.find(params[:id])
- 
+    
      if topic.update_attributes(topic_params)
        render json: topic, status: 200
      else
        render json: {error: "Topic update failed", status: 400}, status: 400
      end
    end
- 
+
    def create
     topic = Topic.new(topic_params)
  
