@@ -1,4 +1,5 @@
 require 'rails_helper'
+include SessionsHelper
 
 RSpec.describe PostsController, type: :controller do
   
@@ -9,6 +10,12 @@ RSpec.describe PostsController, type: :controller do
   let(:other_user) { create(:user) }
   let(:my_post) { create(:post, topic: my_topic, user: my_user) }
 
+  context "no user signed in" do
+    describe 'GET show' do
+      before :example do
+        get :show, topic_id: my_topic.id, id: my_post.id
+      end
+      
       it "assigns my_post to @post" do
         expect(assigns(:post)).to eq(my_post)
       end
