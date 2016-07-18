@@ -78,7 +78,7 @@ puts "#{Topic.count} topics created"
 
 # Create Posts
 50.times do |i|
-  Post.create!(
+  post = Post.create!(
     user:   users.sample,
     topic:  topics.sample,
     title: "#{i}_" + RandomData.random_sentence,
