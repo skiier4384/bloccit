@@ -32,6 +32,7 @@ RSpec.describe Post, type: :model do
        #expect(post).to have_attributes(title: title, body: body)
        expect(post).to have_attributes(title: post.title, body: post.body)
      end
+   end
   
   describe "voting" do
      before do
