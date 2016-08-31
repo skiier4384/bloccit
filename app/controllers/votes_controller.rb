@@ -3,7 +3,7 @@ class VotesController < ApplicationController
  
    def up_vote
      update_vote(1)
-     #redirect_to :back
+     @post = Post.find(params[:post_id])
      respond_to do |format|
        format.html
        format.js
@@ -12,7 +12,7 @@ class VotesController < ApplicationController
    
    def down_vote
      update_vote(-1)
-     #redirect_to :back
+     @post = Post.find(params[:post_id])
      respond_to do |format|
        format.html
        format.js
