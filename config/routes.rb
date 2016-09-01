@@ -6,10 +6,12 @@ Rails.application.routes.draw do
      namespace :v1 do
        resources :users, only: [:index, :show, :create, :update]
        resources :topics, except: [:edit, :new] do
-          resources :posts, only [:update, :destroy, :create]
+          resources :topics, only: [] do
+            resources :posts, only: [:update, :create, :destroy]
+          end
        end
      end
-   end
+    end
   
    resources :labels, only: [:show]
 

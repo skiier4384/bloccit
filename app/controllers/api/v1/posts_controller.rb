@@ -26,8 +26,10 @@
 
    def create
     topic = Topic.find(params[:topic_id])
+    puts topic.name
+    post = Post.new
     post =  topic.posts.build(post_params)
-    post = Post.new(post_params)
+    post.user = @current_user
  
      if post.valid?
        post.save!
