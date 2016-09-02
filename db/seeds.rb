@@ -78,7 +78,7 @@ puts "#{Topic.count} topics created"
 
 # Create Posts
 50.times do |i|
-  Post.create!(
+  post = Post.create!(
     user:   users.sample,
     topic:  topics.sample,
     title: "#{i}_" + RandomData.random_sentence,
@@ -86,7 +86,6 @@ puts "#{Topic.count} topics created"
     labels: labels.sample(rand(0..5)) 
   )
   post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
-  rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
 end
 posts = Post.all
 puts "#{Post.count} posts created"
@@ -96,6 +95,15 @@ puts "#{Post.count} posts created"
   Comment.create!(
     user: users.sample,
     post: posts.sample,
+    body: "#{i}_" + RandomData.random_paragraph
+  )
+end
+
+# Create Comments
+100.times do |i|
+  Comment.create!(
+    user: users.sample,
+    topic: topics.sample,
     body: "#{i}_" + RandomData.random_paragraph
   )
 end
