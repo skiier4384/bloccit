@@ -9,11 +9,14 @@ source 'https://rubygems.org'
  end
  
  group :development do
-   gem 'sqlite3'
-   gem 'pry-rails'
+   gem "better_errors"
+   gem "binding_of_caller"
  end
  
  group :development, :test do
+   gem 'pry-rails'
+   gem 'pry-byebug'
+   gem 'sqlite3'
  end
  
  group :test do
